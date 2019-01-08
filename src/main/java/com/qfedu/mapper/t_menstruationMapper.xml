@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.t_menstruationMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.t_menstruation">
+    <id column="Mid" jdbcType="BIGINT" property="mid" />
+    <result column="Menstrual_cycle" jdbcType="INTEGER" property="menstrualCycle" />
+    <result column="Menstrual_days" jdbcType="INTEGER" property="menstrualDays" />
+    <result column="recently" jdbcType="DATE" property="recently" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Mid, Menstrual_cycle, Menstrual_days, recently
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_menstruation
+    where Mid = #{mid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_menstruation
+    where Mid = #{mid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.t_menstruation">
+    insert into t_menstruation (Mid, Menstrual_cycle, Menstrual_days, 
+      recently)
+    values (#{mid,jdbcType=BIGINT}, #{menstrualCycle,jdbcType=INTEGER}, #{menstrualDays,jdbcType=INTEGER}, 
+      #{recently,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.t_menstruation">
+    insert into t_menstruation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        Mid,
+      </if>
+      <if test="menstrualCycle != null">
+        Menstrual_cycle,
+      </if>
+      <if test="menstrualDays != null">
+        Menstrual_days,
+      </if>
+      <if test="recently != null">
+        recently,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=BIGINT},
+      </if>
+      <if test="menstrualCycle != null">
+        #{menstrualCycle,jdbcType=INTEGER},
+      </if>
+      <if test="menstrualDays != null">
+        #{menstrualDays,jdbcType=INTEGER},
+      </if>
+      <if test="recently != null">
+        #{recently,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.t_menstruation">
+    update t_menstruation
+    <set>
+      <if test="menstrualCycle != null">
+        Menstrual_cycle = #{menstrualCycle,jdbcType=INTEGER},
+      </if>
+      <if test="menstrualDays != null">
+        Menstrual_days = #{menstrualDays,jdbcType=INTEGER},
+      </if>
+      <if test="recently != null">
+        recently = #{recently,jdbcType=DATE},
+      </if>
+    </set>
+    where Mid = #{mid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.t_menstruation">
+    update t_menstruation
+    set Menstrual_cycle = #{menstrualCycle,jdbcType=INTEGER},
+      Menstrual_days = #{menstrualDays,jdbcType=INTEGER},
+      recently = #{recently,jdbcType=DATE}
+    where Mid = #{mid,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" parameterType="map"  resultMap="BaseResultMap">
+    select * from t_menstruation t order by t.`Mid` limit #{index},#{limit}
+
+  </select>
+
+</mapper>

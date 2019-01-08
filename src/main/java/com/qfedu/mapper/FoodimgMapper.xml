@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.FoodimgMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.Foodimg">
+    <id column="i_id" jdbcType="INTEGER" property="iId" />
+    <result column="f_id" jdbcType="INTEGER" property="fId" />
+    <result column="i_imgurl" jdbcType="VARCHAR" property="iImgurl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    i_id, f_id, i_imgurl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from foodimg
+    where i_id = #{iId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from foodimg
+    where i_id = #{iId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.Foodimg">
+    insert into foodimg (i_id, f_id, i_imgurl
+      )
+    values (#{iId,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{iImgurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.Foodimg">
+    insert into foodimg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iId != null">
+        i_id,
+      </if>
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="iImgurl != null">
+        i_imgurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iId != null">
+        #{iId,jdbcType=INTEGER},
+      </if>
+      <if test="fId != null">
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="iImgurl != null">
+        #{iImgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Foodimg">
+    update foodimg
+    <set>
+      <if test="fId != null">
+        f_id = #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="iImgurl != null">
+        i_imgurl = #{iImgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.Foodimg">
+    update foodimg
+    set f_id = #{fId,jdbcType=INTEGER},
+      i_imgurl = #{iImgurl,jdbcType=VARCHAR}
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+</mapper>

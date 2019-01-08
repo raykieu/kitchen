@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.IndexListMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.IndexList">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="img_name" jdbcType="VARCHAR" property="imgName" />
+    <result column="img_info" jdbcType="VARCHAR" property="imgInfo" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="video_name" jdbcType="VARCHAR" property="videoName" />
+    <result column="video_info" jdbcType="VARCHAR" property="videoInfo" />
+    <result column="viedo_url" jdbcType="VARCHAR" property="viedoUrl" />
+    <result column="cook_name" jdbcType="VARCHAR" property="cookName" />
+    <result column="cook_info" jdbcType="VARCHAR" property="cookInfo" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, img_name, img_info, img_url, video_name, video_info, viedo_url, cook_name, cook_info, 
+    info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_indexlist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_indexlist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.IndexList">
+    insert into t_indexlist (id, img_name, img_info, 
+      img_url, video_name, video_info, 
+      viedo_url, cook_name, cook_info, 
+      info)
+    values (#{id,jdbcType=INTEGER}, #{imgName,jdbcType=VARCHAR}, #{imgInfo,jdbcType=VARCHAR}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoInfo,jdbcType=VARCHAR}, 
+      #{viedoUrl,jdbcType=VARCHAR}, #{cookName,jdbcType=VARCHAR}, #{cookInfo,jdbcType=VARCHAR}, 
+      #{info,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.IndexList">
+    insert into t_indexlist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="imgName != null">
+        img_name,
+      </if>
+      <if test="imgInfo != null">
+        img_info,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="videoName != null">
+        video_name,
+      </if>
+      <if test="videoInfo != null">
+        video_info,
+      </if>
+      <if test="viedoUrl != null">
+        viedo_url,
+      </if>
+      <if test="cookName != null">
+        cook_name,
+      </if>
+      <if test="cookInfo != null">
+        cook_info,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgName != null">
+        #{imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgInfo != null">
+        #{imgInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoName != null">
+        #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoInfo != null">
+        #{videoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoUrl != null">
+        #{viedoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cookName != null">
+        #{cookName,jdbcType=VARCHAR},
+      </if>
+      <if test="cookInfo != null">
+        #{cookInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.IndexList">
+    update t_indexlist
+    <set>
+      <if test="imgName != null">
+        img_name = #{imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgInfo != null">
+        img_info = #{imgInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoName != null">
+        video_name = #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoInfo != null">
+        video_info = #{videoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoUrl != null">
+        viedo_url = #{viedoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cookName != null">
+        cook_name = #{cookName,jdbcType=VARCHAR},
+      </if>
+      <if test="cookInfo != null">
+        cook_info = #{cookInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.IndexList">
+    update t_indexlist
+    set img_name = #{imgName,jdbcType=VARCHAR},
+      img_info = #{imgInfo,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      video_name = #{videoName,jdbcType=VARCHAR},
+      video_info = #{videoInfo,jdbcType=VARCHAR},
+      viedo_url = #{viedoUrl,jdbcType=VARCHAR},
+      cook_name = #{cookName,jdbcType=VARCHAR},
+      cook_info = #{cookInfo,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.AttendanceMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.Attendance">
+    <id column="q_id" jdbcType="INTEGER" property="qId" />
+    <result column="q_mark" jdbcType="VARCHAR" property="qMark" />
+    <result column="q_count" jdbcType="INTEGER" property="qCount" />
+    <result column="q_continueSign" jdbcType="INTEGER" property="qContinuesign" />
+    <result column="q_createTime" jdbcType="TIMESTAMP" property="qCreatetime" />
+    <result column="q_updateTime" jdbcType="TIMESTAMP" property="qUpdatetime" />
+    <result column="q_money" jdbcType="DOUBLE" property="qMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    q_id, q_mark, q_count, q_continueSign, q_createTime, q_updateTime, q_money
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attendance
+    where q_id = #{qId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from attendance
+    where q_id = #{qId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.Attendance">
+    insert into attendance (q_id, q_mark, q_count, 
+      q_continueSign, q_createTime, q_updateTime, 
+      q_money)
+    values (#{qId,jdbcType=INTEGER}, #{qMark,jdbcType=VARCHAR}, #{qCount,jdbcType=INTEGER}, 
+      #{qContinuesign,jdbcType=INTEGER}, #{qCreatetime,jdbcType=TIMESTAMP}, #{qUpdatetime,jdbcType=TIMESTAMP}, 
+      #{qMoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.Attendance">
+    insert into attendance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="qId != null">
+        q_id,
+      </if>
+      <if test="qMark != null">
+        q_mark,
+      </if>
+      <if test="qCount != null">
+        q_count,
+      </if>
+      <if test="qContinuesign != null">
+        q_continueSign,
+      </if>
+      <if test="qCreatetime != null">
+        q_createTime,
+      </if>
+      <if test="qUpdatetime != null">
+        q_updateTime,
+      </if>
+      <if test="qMoney != null">
+        q_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="qId != null">
+        #{qId,jdbcType=INTEGER},
+      </if>
+      <if test="qMark != null">
+        #{qMark,jdbcType=VARCHAR},
+      </if>
+      <if test="qCount != null">
+        #{qCount,jdbcType=INTEGER},
+      </if>
+      <if test="qContinuesign != null">
+        #{qContinuesign,jdbcType=INTEGER},
+      </if>
+      <if test="qCreatetime != null">
+        #{qCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qUpdatetime != null">
+        #{qUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qMoney != null">
+        #{qMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Attendance">
+    update attendance
+    <set>
+      <if test="qMark != null">
+        q_mark = #{qMark,jdbcType=VARCHAR},
+      </if>
+      <if test="qCount != null">
+        q_count = #{qCount,jdbcType=INTEGER},
+      </if>
+      <if test="qContinuesign != null">
+        q_continueSign = #{qContinuesign,jdbcType=INTEGER},
+      </if>
+      <if test="qCreatetime != null">
+        q_createTime = #{qCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qUpdatetime != null">
+        q_updateTime = #{qUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qMoney != null">
+        q_money = #{qMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where q_id = #{qId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.Attendance">
+    update attendance
+    set q_mark = #{qMark,jdbcType=VARCHAR},
+      q_count = #{qCount,jdbcType=INTEGER},
+      q_continueSign = #{qContinuesign,jdbcType=INTEGER},
+      q_createTime = #{qCreatetime,jdbcType=TIMESTAMP},
+      q_updateTime = #{qUpdatetime,jdbcType=TIMESTAMP},
+      q_money = #{qMoney,jdbcType=DOUBLE}
+    where q_id = #{qId,jdbcType=INTEGER}
+  </update>
+</mapper>

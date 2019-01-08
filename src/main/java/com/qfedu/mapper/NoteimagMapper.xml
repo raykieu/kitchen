@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.NoteimagMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.Noteimag">
+    <id column="i_id" jdbcType="INTEGER" property="iId" />
+    <result column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="i_imgurl" jdbcType="VARCHAR" property="iImgurl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    i_id, n_id, i_imgurl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from noteimag
+    where i_id = #{iId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from noteimag
+    where i_id = #{iId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.Noteimag">
+    insert into noteimag (i_id, n_id, i_imgurl
+      )
+    values (#{iId,jdbcType=INTEGER}, #{nId,jdbcType=INTEGER}, #{iImgurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.Noteimag">
+    insert into noteimag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iId != null">
+        i_id,
+      </if>
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="iImgurl != null">
+        i_imgurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iId != null">
+        #{iId,jdbcType=INTEGER},
+      </if>
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="iImgurl != null">
+        #{iImgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Noteimag">
+    update noteimag
+    <set>
+      <if test="nId != null">
+        n_id = #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="iImgurl != null">
+        i_imgurl = #{iImgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.Noteimag">
+    update noteimag
+    set n_id = #{nId,jdbcType=INTEGER},
+      i_imgurl = #{iImgurl,jdbcType=VARCHAR}
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+</mapper>

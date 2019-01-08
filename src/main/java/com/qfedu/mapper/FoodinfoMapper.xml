@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.FoodinfoMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.Foodinfo">
+    <id column="f_id" jdbcType="INTEGER" property="fId" />
+    <result column="m_id" jdbcType="INTEGER" property="mId" />
+    <result column="f_price" jdbcType="DOUBLE" property="fPrice" />
+    <result column="f_info" jdbcType="VARCHAR" property="fInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, m_id, f_price, f_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from foodinfo
+    where f_id = #{fId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from foodinfo
+    where f_id = #{fId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.Foodinfo">
+    insert into foodinfo (f_id, m_id, f_price, 
+      f_info)
+    values (#{fId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{fPrice,jdbcType=DOUBLE}, 
+      #{fInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.Foodinfo">
+    insert into foodinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="fPrice != null">
+        f_price,
+      </if>
+      <if test="fInfo != null">
+        f_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="fPrice != null">
+        #{fPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="fInfo != null">
+        #{fInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Foodinfo">
+    update foodinfo
+    <set>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="fPrice != null">
+        f_price = #{fPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="fInfo != null">
+        f_info = #{fInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.Foodinfo">
+    update foodinfo
+    set m_id = #{mId,jdbcType=INTEGER},
+      f_price = #{fPrice,jdbcType=DOUBLE},
+      f_info = #{fInfo,jdbcType=VARCHAR}
+    where f_id = #{fId,jdbcType=INTEGER}
+  </update>
+</mapper>

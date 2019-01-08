@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.ConstitutionMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.Constitution">
+    <id column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="c_sex" jdbcType="INTEGER" property="cSex" />
+    <result column="c_title" jdbcType="VARCHAR" property="cTitle" />
+    <result column="c_info" jdbcType="VARCHAR" property="cInfo" />
+    <result column="c_result" jdbcType="INTEGER" property="cResult" />
+    <result column="c_result_info" jdbcType="VARCHAR" property="cResultInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    c_id, c_sex, c_title, c_info, c_result, c_result_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from constitution
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from constitution
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.Constitution">
+    insert into constitution (c_id, c_sex, c_title, 
+      c_info, c_result, c_result_info
+      )
+    values (#{cId,jdbcType=INTEGER}, #{cSex,jdbcType=INTEGER}, #{cTitle,jdbcType=VARCHAR}, 
+      #{cInfo,jdbcType=VARCHAR}, #{cResult,jdbcType=INTEGER}, #{cResultInfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.Constitution">
+    insert into constitution
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cSex != null">
+        c_sex,
+      </if>
+      <if test="cTitle != null">
+        c_title,
+      </if>
+      <if test="cInfo != null">
+        c_info,
+      </if>
+      <if test="cResult != null">
+        c_result,
+      </if>
+      <if test="cResultInfo != null">
+        c_result_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cSex != null">
+        #{cSex,jdbcType=INTEGER},
+      </if>
+      <if test="cTitle != null">
+        #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cInfo != null">
+        #{cInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cResult != null">
+        #{cResult,jdbcType=INTEGER},
+      </if>
+      <if test="cResultInfo != null">
+        #{cResultInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Constitution">
+    update constitution
+    <set>
+      <if test="cSex != null">
+        c_sex = #{cSex,jdbcType=INTEGER},
+      </if>
+      <if test="cTitle != null">
+        c_title = #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cInfo != null">
+        c_info = #{cInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cResult != null">
+        c_result = #{cResult,jdbcType=INTEGER},
+      </if>
+      <if test="cResultInfo != null">
+        c_result_info = #{cResultInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.Constitution">
+    update constitution
+    set c_sex = #{cSex,jdbcType=INTEGER},
+      c_title = #{cTitle,jdbcType=VARCHAR},
+      c_info = #{cInfo,jdbcType=VARCHAR},
+      c_result = #{cResult,jdbcType=INTEGER},
+      c_result_info = #{cResultInfo,jdbcType=VARCHAR}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>

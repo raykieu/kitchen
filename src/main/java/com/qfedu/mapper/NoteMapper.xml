@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.NoteMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.Note">
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="n_info" jdbcType="VARCHAR" property="nInfo" />
+    <result column="n_nice" jdbcType="INTEGER" property="nNice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    n_id, n_info, n_nice
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from note
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from note
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.Note">
+    insert into note (n_id, n_info, n_nice
+      )
+    values (#{nId,jdbcType=INTEGER}, #{nInfo,jdbcType=VARCHAR}, #{nNice,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.Note">
+    insert into note
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="nInfo != null">
+        n_info,
+      </if>
+      <if test="nNice != null">
+        n_nice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="nInfo != null">
+        #{nInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="nNice != null">
+        #{nNice,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Note">
+    update note
+    <set>
+      <if test="nInfo != null">
+        n_info = #{nInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="nNice != null">
+        n_nice = #{nNice,jdbcType=INTEGER},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.Note">
+    update note
+    set n_info = #{nInfo,jdbcType=VARCHAR},
+      n_nice = #{nNice,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+</mapper>
