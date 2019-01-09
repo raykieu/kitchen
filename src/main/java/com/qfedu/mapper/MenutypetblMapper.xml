@@ -92,8 +92,8 @@
   </update>
   <select id="findAllMenu" parameterType="com.qfedu.entity.Menutypetbl" resultMap="BaseResultMap">
       select a.m_name,b.m_name m_parentname FROM menutypetbl a
-INNER JOIN menutypetbl b
-ON a.m_id = b.m_parent
-WHERE b.m_flag=0 AND a.m_type = 0 limit #{index},#{limit}
+      INNER JOIN menutypetbl b
+      ON a.m_id = b.m_parent
+      WHERE b.m_flag=0 AND a.m_type = 0 limit #{index},#{limit}
   </select>
 </mapper>

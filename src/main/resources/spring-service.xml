@@ -25,7 +25,6 @@
             <!--aop配置声明式事务-->
     <!-- <tx:advice transaction-manager="transactionManager" id="interceptor">
         <tx:attributes>
-            
             <tx:method name="*" />
         </tx:attributes>
     </tx:advice>
@@ -34,8 +33,6 @@
         <aop:pointcut id="pt" expression="execution(* com.qfedu.admin.service.impl.*.*(..))"></aop:pointcut>
         <aop:advisor advice-ref="interceptor" pointcut-ref="pt"></aop:advisor>
     </aop:config> -->
-
-	
 	
 	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 </beans>

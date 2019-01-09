@@ -75,8 +75,7 @@
 		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
 		<property name="validationMessageSource" ref="hibernateMessages"></property>
 	</bean>
-	
-	
+
 	<!--<mvc:resources mapping="" location=""></mvc:resources> -->
 
 </beans>
