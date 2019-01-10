@@ -41,7 +41,6 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
         <property name="basePackage" value="com.qfedu.dao"></property>
-       
     </bean>
     
 	

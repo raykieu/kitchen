@@ -24,4 +24,5 @@ public class MenstrualController {
         return menstruationService.queryPage(page, limit);
     }
 
+
 }
