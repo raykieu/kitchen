@@ -31,6 +31,9 @@ public class IndexListTwoServiceImpl implements IndexListTwoService {
         List<TwoMenuInfo> list = indexlistMapperDao.selectByType1(title);
         return ResultVo.setOK(list);
     }
+
+
+
     //烘培
     @Override
     public ResultVo findBake(String title ){
@@ -50,4 +53,10 @@ public class IndexListTwoServiceImpl implements IndexListTwoService {
         return ResultVo.setOK(list);
     }
 
+    //首页顶部搜索框，模糊查询
+    @Override
+    public ResultVo findMenuInfoByTitle(String title) {
+        List<TwoMenuInfo> list = indexlistMapperDao.selectMenuInfoByTitle(title);
+        return ResultVo.setOK(list);
+    }
 }

@@ -30,7 +30,6 @@ public interface IndexListMapper {
     @ResultType(TwoMenuInfo.class)
     List<TwoMenuInfo> selectByType1(String title);
 
-
     //通过输入标题查询相似信息展示 烘培
     @Select("select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE p1.id=2 and p2.info like CONCAT('%' ,#{title},'%')")
     @ResultType(TwoMenuInfo.class)
@@ -46,4 +45,7 @@ public interface IndexListMapper {
     @ResultType(TwoMenuInfo.class)
     List<TwoMenuInfo> selectByType4(String title);
 
+    @Select("select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE  p2.info like CONCAT('%' ,#{title},'%')")
+    @ResultType(TwoMenuInfo.class)
+    List<TwoMenuInfo> selectMenuInfoByTitle(String title);
 }

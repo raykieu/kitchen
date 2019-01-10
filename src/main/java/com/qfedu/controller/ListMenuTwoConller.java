@@ -58,4 +58,11 @@ public class ListMenuTwoConller {
         return  ResultVo.setOK(indexListTwoServiceImpl.findVegetarianism(title).getData());
     }
 
+    //首页顶部搜索框
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"首页顶部搜索框"},value = "输入标题查询相应的煲汤，素食主义，佳作，烘培全部数据的数据接口")
+    @GetMapping("/searchMenuInfo.do")
+    public ResultVo SearchMenuInfo(@ApiParam(value = "参数,搜索框数入的标题/关键字")String title) {
+        return  ResultVo.setOK(indexListTwoServiceImpl.findMenuInfoByTitle(title).getData());
+    }
+
 }
