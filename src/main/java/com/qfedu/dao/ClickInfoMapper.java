@@ -43,5 +43,18 @@ public interface ClickInfoMapper {
     @Update("update t_clickinfo set play_count=play_count+1 where id = #{id}")
     int updatePlayCountById(Integer id);
 
+    //通过id点赞减一
+    @Update("update t_clickinfo set like_count=like_count-1 where tlike_count>0 and id =#{id}")
+    int updateLikeCountById2(Integer id);
+
+    //通过id收藏减一
+    @Update("update t_clickinfo set collect_count=collect_count-1 where collect_count>0 and id =#{id}")
+    int updateCollectCountById2(Integer id);
+
+    //通过id播放量减一
+    @Update("update t_clickinfo set play_count=play_count-1 where play_count>0 and id = #{id}")
+    int updatePlayCountById2(Integer id);
+
+
 
 }

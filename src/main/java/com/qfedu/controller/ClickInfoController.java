@@ -53,4 +53,22 @@ public class ClickInfoController {
         return ResultVo.setOK(clickInfoService.collectCountAuto(id));
     }
 
+    @ApiOperation(notes = "实现传递参数，响应收藏量-1",tags = {"烘培，煲汤，本周佳作，素食主义页面的单条数据展示"},value = "收藏量-1的数据接口")
+    @GetMapping("/collect2.do")
+    public ResultVo collect2(@ApiParam(value = "参数，该条数据的id，属性为id")Integer id){
+        return ResultVo.setOK(clickInfoService.collectCountReduce(id));
+    }
+
+    @ApiOperation(notes = "实现传递参数，响应点赞量-1",tags = {"烘培，煲汤，本周佳作，素食主义页面的单条数据展示"},value = "点赞量-1的数据接口")
+    @GetMapping("/like2.do")
+    public ResultVo like2(@ApiParam(value = "参数，该条数据的id，属性为id")Integer id){
+        return ResultVo.setOK(clickInfoService.likeCountReduce(id));
+    }
+
+    @ApiOperation(notes = "实现传递参数，响应播放量-1",tags = {"烘培，煲汤，本周佳作，素食主义页面的单条数据展示"},value = "播放量-1的数据接口")
+    @GetMapping("/play2.do")
+    public ResultVo play2(@ApiParam(value = "参数，该条数据的id，属性为id")Integer id){
+        return ResultVo.setOK(clickInfoService.playCountRedecu(id));
+    }
+
 }

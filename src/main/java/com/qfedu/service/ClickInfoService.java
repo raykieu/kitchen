@@ -11,4 +11,11 @@ public interface ClickInfoService {
     //播放量加一
     ResultVo playCountAuto(Integer id);
 
+    //收藏量减一
+    ResultVo collectCountReduce(Integer id);
+    //点赞量减一
+    ResultVo likeCountReduce(Integer id);
+    //播放量减一
+    ResultVo playCountRedecu(Integer id);
+
 }
