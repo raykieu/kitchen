@@ -9,9 +9,10 @@
     <result column="q_createTime" jdbcType="TIMESTAMP" property="qCreatetime" />
     <result column="q_updateTime" jdbcType="TIMESTAMP" property="qUpdatetime" />
     <result column="q_money" jdbcType="DOUBLE" property="qMoney" />
+    <result column="q_uid" jdbcType="INTEGER" property="qUid" />
   </resultMap>
   <sql id="Base_Column_List">
-    q_id, q_mark, q_count, q_continueSign, q_createTime, q_updateTime, q_money
+    q_id, q_mark, q_count, q_continueSign, q_createTime, q_updateTime, q_money,q_uid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.qfedu.entity.Attendance">
     insert into attendance (q_id, q_mark, q_count, 
       q_continueSign, q_createTime, q_updateTime, 
-      q_money)
+      q_money,q_uid)
     values (#{qId,jdbcType=INTEGER}, #{qMark,jdbcType=VARCHAR}, #{qCount,jdbcType=INTEGER}, 
       #{qContinuesign,jdbcType=INTEGER}, #{qCreatetime,jdbcType=TIMESTAMP}, #{qUpdatetime,jdbcType=TIMESTAMP}, 
-      #{qMoney,jdbcType=DOUBLE})
+      #{qMoney,jdbcType=DOUBLE},#{qUid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.qfedu.entity.Attendance">
     insert into attendance
@@ -55,6 +56,9 @@
       <if test="qMoney != null">
         q_money,
       </if>
+      <if test="qUid != null">
+        q_uid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="qId != null">
@@ -77,6 +81,9 @@
       </if>
       <if test="qMoney != null">
         #{qMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="qUid != null">
+        #{qUid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -101,6 +108,9 @@
       <if test="qMoney != null">
         q_money = #{qMoney,jdbcType=DOUBLE},
       </if>
+      <if test="qUid != null">
+        q_uid = #{qUid,jdbcType=INTEGER},
+      </if>
     </set>
     where q_id = #{qId,jdbcType=INTEGER}
   </update>
@@ -111,7 +121,12 @@
       q_continueSign = #{qContinuesign,jdbcType=INTEGER},
       q_createTime = #{qCreatetime,jdbcType=TIMESTAMP},
       q_updateTime = #{qUpdatetime,jdbcType=TIMESTAMP},
-      q_money = #{qMoney,jdbcType=DOUBLE}
+      q_money = #{qMoney,jdbcType=DOUBLE},
+      q_uid = #{qUid,jdbcType=INTEGER}
     where q_id = #{qId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAllAttendance" parameterType="int" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM attendance WHERE q_uid = #{qUid}
+  </select>
 </mapper>

@@ -5,13 +5,30 @@ public class Constitution {
 
     private Integer cSex;
 
-    private String cTitle;
-
     private String cInfo;
 
     private Integer cResult;
 
     private String cResultInfo;
+
+    public Integer getcUid() {
+        return cUid;
+    }
+
+    public void setcUid(Integer cUid) {
+        this.cUid = cUid;
+    }
+
+    private Integer cFlag;
+
+    private Integer cUid;
+    public Integer getcFlag() {
+        return cFlag;
+    }
+
+    public void setcFlag(Integer cFlag) {
+        this.cFlag = cFlag;
+    }
 
     public Integer getcId() {
         return cId;
@@ -27,14 +44,6 @@ public class Constitution {
 
     public void setcSex(Integer cSex) {
         this.cSex = cSex;
-    }
-
-    public String getcTitle() {
-        return cTitle;
-    }
-
-    public void setcTitle(String cTitle) {
-        this.cTitle = cTitle == null ? null : cTitle.trim();
     }
 
     public String getcInfo() {

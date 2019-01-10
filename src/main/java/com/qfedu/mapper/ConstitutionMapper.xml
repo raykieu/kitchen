@@ -8,9 +8,11 @@
     <result column="c_info" jdbcType="VARCHAR" property="cInfo" />
     <result column="c_result" jdbcType="INTEGER" property="cResult" />
     <result column="c_result_info" jdbcType="VARCHAR" property="cResultInfo" />
+    <result column="c_flag" jdbcType="INTEGER" property="cFlag" />
+    <result column="c_uid" jdbcType="INTEGER" property="cUid" />
   </resultMap>
   <sql id="Base_Column_List">
-    c_id, c_sex, c_title, c_info, c_result, c_result_info
+    c_id, c_sex, c_title, c_info, c_result, c_result_info,c_flag,c_uid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,10 +26,10 @@
   </delete>
   <insert id="insert" parameterType="com.qfedu.entity.Constitution">
     insert into constitution (c_id, c_sex, c_title, 
-      c_info, c_result, c_result_info
+      c_info, c_result, c_result_info,c_flag,c_uid
       )
     values (#{cId,jdbcType=INTEGER}, #{cSex,jdbcType=INTEGER}, #{cTitle,jdbcType=VARCHAR}, 
-      #{cInfo,jdbcType=VARCHAR}, #{cResult,jdbcType=INTEGER}, #{cResultInfo,jdbcType=VARCHAR}
+      #{cInfo,jdbcType=VARCHAR}, #{cResult,jdbcType=INTEGER}, #{cResultInfo,jdbcType=VARCHAR}, #{cFlag,jdbcType=INTEGER}, #{cUid,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.qfedu.entity.Constitution">
@@ -51,6 +53,12 @@
       <if test="cResultInfo != null">
         c_result_info,
       </if>
+      <if test="cFlag != null">
+        c_flag,
+      </if>
+      <if test="cUid != null">
+        c_uid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cId != null">
@@ -70,6 +78,12 @@
       </if>
       <if test="cResultInfo != null">
         #{cResultInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cFlag != null">
+        #{cFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cUid != null">
+        #{cUid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -91,6 +105,12 @@
       <if test="cResultInfo != null">
         c_result_info = #{cResultInfo,jdbcType=VARCHAR},
       </if>
+      <if test="cFlag != null">
+        c_flag = #{cFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cUid != null">
+        c_uid = #{cUid,jdbcType=INTEGER},
+      </if>
     </set>
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
@@ -100,7 +120,17 @@
       c_title = #{cTitle,jdbcType=VARCHAR},
       c_info = #{cInfo,jdbcType=VARCHAR},
       c_result = #{cResult,jdbcType=INTEGER},
-      c_result_info = #{cResultInfo,jdbcType=VARCHAR}
+      c_result_info = #{cResultInfo,jdbcType=VARCHAR},
+      c_flag = #{cFlag,jdbcType=INTEGER},
+      c_uid = #{cUid,jdbcType=INTEGER},
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
+  <select id="findAllConstitution" resultMap="BaseResultMap">
+    SELECT c_id,c_sex,c_info FROM constitution where c_flag = 0
+  </select>
+
+  <select id="findConstitutionById" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM constitution where c_id = #{cId}
+  </select>
+
 </mapper>

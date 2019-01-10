@@ -91,9 +91,29 @@
     where m_id = #{mId,jdbcType=INTEGER}
   </update>
   <select id="findAllMenu" parameterType="com.qfedu.entity.Menutypetbl" resultMap="BaseResultMap">
-      select a.m_name,b.m_name m_parentname FROM menutypetbl a
-INNER JOIN menutypetbl b
+      select b.m_name,a.m_id FROM menutypetbl a
+LEFT JOIN menutypetbl b
 ON a.m_id = b.m_parent
-WHERE b.m_flag=0 AND a.m_type = 0 limit #{index},#{limit}
+WHERE b.m_flag=0 AND a.m_id = #{mid}
+  </select>
+
+  <select id="findByMenuId" parameterType="int" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from  menutypetbl where m_id = #{mid}
+  </select>
+
+  <select id="findByMenuName" parameterType="string" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from  menutypetbl where m_name LIKE concat('%',#{mName},'%') and m_type = 0 and m_parent > 0
+  </select>
+
+  <select id="findAllOneMenu" parameterType="int" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM menutypetbl WHERE m_parent = 0 and m_type = 0
+  </select>
+
+  <select id="findAllOneSport" parameterType="int" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM menutypetbl WHERE m_parent = 0 and m_type = 1
+  </select>
+
+  <select id="findByMenuSport" parameterType="string" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from  menutypetbl where m_name LIKE concat('%',#{mName},'%') and m_type = 1 and m_parent > 0
   </select>
 </mapper>

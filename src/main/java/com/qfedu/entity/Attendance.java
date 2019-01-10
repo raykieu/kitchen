@@ -3,19 +3,29 @@ package com.qfedu.entity;
 import java.util.Date;
 
 public class Attendance {
-    private Integer qId;
+    private Integer qId; //签到Id
 
-    private String qMark;
+    private String qMark; //签到信息
 
-    private Integer qCount;
+    private Integer qCount; //总签到数
 
-    private Integer qContinuesign;
+    private Integer qContinuesign; //七天连续签到
 
-    private Date qCreatetime;
+    private Date qCreatetime; //创建时间
 
-    private Date qUpdatetime;
+    private Date qUpdatetime; //更新时间
 
-    private Double qMoney;
+    private Double qMoney; //签到奖金
+
+    private Integer qUid;
+
+    public Integer getqUid() {
+        return qUid;
+    }
+
+    public void setqUid(Integer qUid) {
+        this.qUid = qUid;
+    }
 
     public Integer getqId() {
         return qId;
