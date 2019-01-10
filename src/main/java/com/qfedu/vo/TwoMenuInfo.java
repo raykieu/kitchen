@@ -8,14 +8,36 @@
 package com.qfedu.vo;
 
 public class TwoMenuInfo {
+    private Integer id;
     private String name;
-    private String info;
+    private String info; //该条数据的标题
     private String img_url;
     private String video_url;
     private String cook_name;
     private Integer like_count;
     private Integer collect_count;
     private Integer play_count;
+    private Integer clid;  //对应的点赞收藏的表id
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setVideo_url(String video_url) {
+        this.video_url = video_url;
+    }
+
+    public Integer getClid() {
+        return clid;
+    }
+
+    public void setClid(Integer clid) {
+        this.clid = clid;
+    }
 
     public String getName() {
         return name;
