@@ -4,6 +4,10 @@
   <resultMap id="BaseResultMap" type="com.qfedu.entity.Sport">
     <id column="s_id" jdbcType="INTEGER" property="sId" />
     <result column="s_info" jdbcType="VARCHAR" property="sInfo" />
+
+    <association property="iImgurl"
+                 resultMap="com.qfedu.dao.SportimgMapper.BaseResultMap">
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     s_id, s_info
@@ -55,4 +59,14 @@
     set s_info = #{sInfo,jdbcType=VARCHAR}
     where s_id = #{sId,jdbcType=INTEGER}
   </update>
+  <select id="findAllSports" resultMap="BaseResultMap">
+    SELECT s.*,sp.i_imgurl FROM sport s
+    INNER JOIN sportimg sp
+    WHERE s.s_id = sp.s_id
+    LIMIT #{index},#{limit}
+  </select>
+
+  <select id="sportCount"  resultMap="BaseResultMap">
+	select count(*) from sport
+  </select>
 </mapper>

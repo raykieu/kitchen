@@ -2,7 +2,6 @@ package com.qfedu.controller;
 
 import com.qfedu.entity.Menutypetbl;
 import com.qfedu.service.MenutypetblService;
-import com.qfedu.vo.PageBeanVo;
 import com.qfedu.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

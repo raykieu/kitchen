@@ -5,6 +5,16 @@ public class Sport {
 
     private String sInfo;
 
+    private Sportimg iImgurl;
+
+    public Sportimg getiImgurl() {
+        return iImgurl;
+    }
+
+    public void setiImgurl(Sportimg iImgurl) {
+        this.iImgurl = iImgurl;
+    }
+
     public Integer getsId() {
         return sId;
     }
