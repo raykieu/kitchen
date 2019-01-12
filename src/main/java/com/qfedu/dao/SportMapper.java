@@ -1,6 +1,8 @@
 package com.qfedu.dao;
 
 import com.qfedu.entity.Sport;
+import org.apache.ibatis.annotations.ResultType;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -20,5 +22,9 @@ public interface SportMapper {
 
     List<Sport> findAllSports(Map<String,Object> map);
 
+    @Select("select count(*) from sport")
+    @ResultType(Integer.class)
     int sportCount();
+
+    Sport findeBySportByid(int sId);
 }

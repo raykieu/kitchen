@@ -11,6 +11,16 @@ public class Foodmenu {
 
     private String mText;
 
+    private Integer uId;
+
+    public Integer getUId() {
+        return uId;
+    }
+
+    public void setUid(Integer uId) {
+        this.uId = uId;
+    }
+
     public Integer getmId() {
         return mId;
     }

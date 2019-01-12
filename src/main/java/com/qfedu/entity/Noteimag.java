@@ -7,6 +7,26 @@ public class Noteimag {
 
     private String iImgurl;
 
+    private tuser user;
+
+    private Note note;
+
+    public Note getNote() {
+        return note;
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
+    }
+
+    public tuser getUser() {
+        return user;
+    }
+
+    public void setUser(tuser user) {
+        this.user = user;
+    }
+
     public Integer getiId() {
         return iId;
     }

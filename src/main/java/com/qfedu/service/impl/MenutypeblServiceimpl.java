@@ -62,7 +62,7 @@ public class MenutypeblServiceimpl implements MenutypetblService {
 
     @Override
     public ResultVo findByMenuName(String mname) {
-        Menutypetbl me = menudao.findByMenuName(mname);
+        List<Menutypetbl> me = menudao.findByMenuName(mname);
         if (me != null) {
             return ResultVo.setOK(me);
         }
@@ -108,7 +108,7 @@ public class MenutypeblServiceimpl implements MenutypetblService {
 
     @Override
     public ResultVo findByMenuSport(String mname) {
-        Menutypetbl me = menudao.findByMenuSport(mname);
+        List<Menutypetbl> me = menudao.findByMenuSport(mname);
         if (me != null) {
             return ResultVo.setOK(me);
         }
