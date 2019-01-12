@@ -20,32 +20,35 @@ public interface IndexListMapper {
 
     int updateByPrimaryKey(IndexList record);
 
-    //通过id(烘培,煲汤,素食主义,本周佳作)展示菜单信息
-    @Select( " select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE p1.id=#{id}")
+    //通过id展示 烘培/煲汤/素食主义/本周佳作 全部信息
+    @Select("select p1.id,p1.`name`,p2.id as sid ,p2.info,p2.img_url,p2.video_url,p2.cook_name,p2.clid,p3.like_count,p3.collect_count,p3.play_count,p3.look_count from t_typetwo p1 INNER JOIN t_indexlist p2 ON p2.tpid=p1.id INNER JOIN t_clickinfo p3 ON p2.clid=p3.id where p1.id=#{id}")
     @ResultType(TwoMenuInfo.class)
-    List<TwoMenuInfo> selectByAllType(Integer id);
+    List<TwoMenuInfo> selectInfoAllByTypeId(Integer id);
 
-    //通过输入标题查询相似信息展示 本周佳作
-    @Select("select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE p1.id=1 and p2.info like CONCAT('%' ,#{title},'%')")
+    //通过title模糊查询 本周佳作 数据
+    @Select("select p1.id,p1.`name`,p2.id as sid ,p2.info,p2.img_url,p2.video_url,p2.cook_name,p2.clid,p3.like_count,p3.collect_count,p3.play_count,p3.look_count from t_typetwo p1 INNER JOIN t_indexlist p2 ON p2.tpid=p1.id INNER JOIN t_clickinfo p3 ON p2.clid=p3.id where p1.id=1 and p2.info like CONCAT('%',#{title},'%')")
     @ResultType(TwoMenuInfo.class)
-    List<TwoMenuInfo> selectByType1(String title);
+    List<TwoMenuInfo> selectInfoByTitle(String title);
 
-    //通过输入标题查询相似信息展示 烘培
-    @Select("select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE p1.id=2 and p2.info like CONCAT('%' ,#{title},'%')")
+    //通过title模糊查询 烘培 数据
+    @Select("select p1.id,p1.`name`,p2.id as sid ,p2.info,p2.img_url,p2.video_url,p2.cook_name,p2.clid,p3.like_count,p3.collect_count,p3.play_count,p3.look_count from t_typetwo p1 INNER JOIN t_indexlist p2 ON p2.tpid=p1.id INNER JOIN t_clickinfo p3 ON p2.clid=p3.id where p1.id=2 and p2.info like CONCAT('%',#{title},'%')")
     @ResultType(TwoMenuInfo.class)
-    List<TwoMenuInfo> selectByType2(String title);
+    List<TwoMenuInfo> selectInfoByTitle2(String title);
 
-    //通过输入标题查询相似信息展示 煲汤
-    @Select("select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE p1.id=3 and p2.info like CONCAT('%' ,#{title},'%')")
+    //通过title模糊查询 煲汤 数据
+    @Select("select p1.id,p1.`name`,p2.id as sid ,p2.info,p2.img_url,p2.video_url,p2.cook_name,p2.clid,p3.like_count,p3.collect_count,p3.play_count,p3.look_count from t_typetwo p1 INNER JOIN t_indexlist p2 ON p2.tpid=p1.id INNER JOIN t_clickinfo p3 ON p2.clid=p3.id where p1.id=3 and p2.info like CONCAT('%',#{title},'%')")
     @ResultType(TwoMenuInfo.class)
-    List<TwoMenuInfo> selectByType3(String title);
+    List<TwoMenuInfo> selectInfoByTitle3(String title);
 
-    //通过输入标题查询相似信息展示 素食主义
-    @Select("select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE p1.id=4 and p2.info like CONCAT('%' ,#{title},'%')")
+    //通过title模糊查询 素食主义 数据
+    @Select("select p1.id,p1.`name`,p2.id as sid ,p2.info,p2.img_url,p2.video_url,p2.cook_name,p2.clid,p3.like_count,p3.collect_count,p3.play_count,p3.look_count from t_typetwo p1 INNER JOIN t_indexlist p2 ON p2.tpid=p1.id INNER JOIN t_clickinfo p3 ON p2.clid=p3.id where p1.id=4 and p2.info like CONCAT('%',#{title},'%')")
     @ResultType(TwoMenuInfo.class)
-    List<TwoMenuInfo> selectByType4(String title);
+    List<TwoMenuInfo> selectInfoByTitle4(String title);
 
-    @Select("select `name`,p2.info,img_url,video_url,cook_name,like_count,play_count,collect_count FROM t_typetwo p1 INNER JOIN t_indexlist p2 on  p1.id=p2.tpid INNER JOIN t_clickinfo p3 on  p2.clid=p3.id WHERE  p2.info like CONCAT('%' ,#{title},'%')")
+    //通过title模糊查询，全部关键字数据
+    @Select("select p1.id,p1.`name`,p2.id as sid ,p2.info,p2.img_url,p2.video_url,p2.cook_name,p2.clid,p3.like_count,p3.collect_count,p3.play_count,p3.look_count from t_typetwo p1 INNER JOIN t_indexlist p2 ON p2.tpid=p1.id INNER JOIN t_clickinfo p3 ON p2.clid=p3.id where p2.info like CONCAT('%',#{title},'%')")
     @ResultType(TwoMenuInfo.class)
-    List<TwoMenuInfo> selectMenuInfoByTitle(String title);
+    List<TwoMenuInfo> selectInfoAllByTitle(String title);
+
+
 }

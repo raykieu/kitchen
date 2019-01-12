@@ -21,42 +21,65 @@ public class IndexListTwoServiceImpl implements IndexListTwoService {
     private IndexListMapper indexlistMapperDao;
 
     @Override
-    public ResultVo findMenuInfoTwo(Integer id) {
-        List<TwoMenuInfo> list = indexlistMapperDao.selectByAllType(id);
-        return  ResultVo.setOK(list);
+    public ResultVo findAllMenuInfo(Integer id) {
+        List<TwoMenuInfo> list = indexlistMapperDao.selectInfoAllByTypeId(id);
+        if (list != null){
+            return ResultVo.setOK(list);
+        }else {
+            return ResultVo.setERROR();
+        }
     }
+
     //本周佳作
     @Override
     public ResultVo findMerit (String title){
-        List<TwoMenuInfo> list = indexlistMapperDao.selectByType1(title);
-        return ResultVo.setOK(list);
+        List<TwoMenuInfo> list = indexlistMapperDao.selectInfoByTitle(title);
+        if (list != null){
+            return  ResultVo.setOK(list);
+        }else{
+            return  ResultVo.setERROR();
+        }
     }
-
-
 
     //烘培
     @Override
     public ResultVo findBake(String title ){
-        List<TwoMenuInfo> list = indexlistMapperDao.selectByType2(title);
-        return  ResultVo.setOK(list);
+        List<TwoMenuInfo> list = indexlistMapperDao.selectInfoByTitle2(title);
+        if (list != null){
+            return ResultVo.setOK(list);
+        }else{
+            return ResultVo.setERROR();
+        }
     }
     //煲汤
     @Override
     public ResultVo findCookSoup (String title ){
-        List<TwoMenuInfo> list = indexlistMapperDao.selectByType3(title);
-        return ResultVo.setOK(list);
+        List<TwoMenuInfo> list = indexlistMapperDao.selectInfoByTitle3(title);
+        if (list != null){
+            return ResultVo.setOK(list);
+        }else{
+            return ResultVo.setERROR();
+        }
     }
     //素食主义
     @Override
     public ResultVo findVegetarianism(String title){
-        List<TwoMenuInfo> list = indexlistMapperDao.selectByType4(title);
-        return ResultVo.setOK(list);
+        List<TwoMenuInfo> list = indexlistMapperDao.selectInfoByTitle4(title);
+        if (list != null){
+            return  ResultVo.setOK(list);
+        }else {
+            return ResultVo.setERROR();
+        }
     }
 
     //首页顶部搜索框，模糊查询
     @Override
-    public ResultVo findMenuInfoByTitle(String title) {
-        List<TwoMenuInfo> list = indexlistMapperDao.selectMenuInfoByTitle(title);
-        return ResultVo.setOK(list);
+    public ResultVo SearchMenuInfo(String title){
+        List<TwoMenuInfo> list = indexlistMapperDao.selectInfoAllByTitle(title);
+        if (list != null){
+            return  ResultVo.setOK(list);
+        }else {
+            return ResultVo.setERROR();
+        }
     }
 }

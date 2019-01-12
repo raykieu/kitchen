@@ -21,48 +21,47 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class ListMenuTwoConller {
+
     @Autowired(required = true)
     private IndexListTwoService indexListTwoServiceImpl;
 
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"烘培，煲汤，本周佳作，素食主义数据展示"},value = "获取展示数据接口")
-    @GetMapping("/listMenuTwo.do")
-    public ResultVo SecondMenu(@ApiParam(value = "参数：种类信息，本周佳作1，烘培2，煲汤3，素食主义4") Integer id){
-        return  ResultVo.setOK(indexListTwoServiceImpl.findMenuInfoTwo(id).getData());
+    @ApiOperation(notes = "实现传递参数，响应对应类型的数据",tags = {"数据类型展示。参数：id：本周佳作1，烘培2，煲汤3，素食主义4"},value = "获取展示数据接口")
+    @GetMapping("/MenuInfoShow.do")
+    public ResultVo MenuInfoShow(Integer id){
+        return ResultVo.setOK(indexListTwoServiceImpl.findAllMenuInfo(id).getData());
     }
 
     //佳作
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"本周佳作"},value = "获取展示数据接口")
+    @ApiOperation(notes = "实现传递参数，响应本周佳作模糊查询的数据",tags = {"本周佳作模糊查询。参数：输入框数据String"},value = "获取本周佳作搜索框结果的数据接口")
     @GetMapping("/meritMenu.do")
-    public ResultVo MeritMenu(@ApiParam(value = "标题，关键字") String title){
+    public ResultVo MeritMenu(String title){
         return ResultVo.setOK(indexListTwoServiceImpl.findMerit(title).getData());
     }
 
     //烘焙
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"烘培"},value = "获取展示数据接口")
+    @ApiOperation(notes = "实现传递参数，响应烘焙模糊查询的数据",tags = {"烘焙模糊查询,参数：输入框数据String"},value = "获取烘焙搜索框结果的数据接口")
     @GetMapping("/bakeMenu.do")
-    public ResultVo BakeMenu(@ApiParam(value = "标题，关键字")String title) {
+    public ResultVo BakeMenu(String title) {
         return  ResultVo.setOK(indexListTwoServiceImpl.findBake(title).getData());
     }
 
     //煲汤
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"煲汤"},value = "获取展示数据接口")
+    @ApiOperation(notes = "实现传递参数，响应煲汤模糊查询的数据",tags = {"煲汤模糊查询,参数：输入框数据String"},value = "获取煲汤搜索框结果的数据接口")
     @GetMapping("/cookSoupMenu.do")
-    public ResultVo CookSoupMenu(@ApiParam(value = "数据的info")String title) {
+    public ResultVo CookSoupMenu(String title) {
         return  ResultVo.setOK(indexListTwoServiceImpl.findCookSoup(title).getData());
     }
-
     //素食主义
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"素食主义"},value = "获取展示数据接口")
+    @ApiOperation(notes = "实现传递参数，响应素食主义模糊查询的数据",tags = {"素食主义模糊查询,参数：输入框数据String"},value = "获取素食主义搜索框结果的数据接口")
     @GetMapping("/vegetarianismMenu.do")
-    public ResultVo VegetarianismMenu(@ApiParam(value = "参数为条数据的标题/关键字")String title) {
+    public ResultVo VegetarianismMenu(String title) {
         return  ResultVo.setOK(indexListTwoServiceImpl.findVegetarianism(title).getData());
     }
 
-    //首页顶部搜索框
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"首页顶部搜索框"},value = "输入标题查询相应的煲汤，素食主义，佳作，烘培全部数据的数据接口")
-    @GetMapping("/searchMenuInfo.do")
-    public ResultVo SearchMenuInfo(@ApiParam(value = "参数,搜索框数入的标题/关键字")String title) {
-        return  ResultVo.setOK(indexListTwoServiceImpl.findMenuInfoByTitle(title).getData());
-    }
-
+  //首页顶部搜索框
+  @ApiOperation(notes = "实现传递参数，响应模糊查询的数据",tags = {"顶部搜索框模糊查询,参数：输入框数据String"},value = "获取搜索框结果的数据接口")
+  @GetMapping("/searchAll.do")
+  public ResultVo SearchAll(String title) {
+      return  ResultVo.setOK(indexListTwoServiceImpl.SearchMenuInfo(title).getData());
+  }
 }

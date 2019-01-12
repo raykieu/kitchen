@@ -21,15 +21,10 @@ public interface ClickInfoMapper {
 
     int updateByPrimaryKey(ClickInfo record);
 
-    //通过输入标题,信息展示
-    @Select("select tp1.id,tp1.info,img_url,video_url ,cook_name,clid,like_count,collect_count,play_count from t_indexlist tp1 INNER JOIN t_clickinfo tp2 on tp1.clid = tp2.id where tp1.info = #{title}")
+    //通过id，获取本条数据
+    @Select("select s1.id as sid ,s1.info,s1.img_url,s1.video_url,s1.cook_name,s1.clid,s2.like_count,s2.collect_count,s2.play_count,s2.look_count from t_indexlist s1 INNER JOIN t_clickinfo s2 on s1.clid = s2.id where s1.id = 1")
     @ResultType(TwoMenuInfo.class)
-    TwoMenuInfo selectByInfo(String title);
-
-    //通过输入(对应的点赞收藏表的id),信息展示
-    @Select("select tp1.id,tp1.info,img_url,video_url ,cook_name,clid,like_count,collect_count,play_count from t_indexlist tp1 INNER JOIN t_clickinfo tp2 on tp1.clid = tp2.id where tp1.id = #{id}")
-    @ResultType(TwoMenuInfo.class)
-    TwoMenuInfo selectById(Integer id);
+    TwoMenuInfo selectByInfoId(Integer id);
 
     //通过id点赞加一
     @Update(" update t_clickinfo set like_count = like_count+1 where id = #{id}")
@@ -42,6 +37,10 @@ public interface ClickInfoMapper {
     //通过id播放量加一
     @Update("update t_clickinfo set play_count=play_count+1 where id = #{id}")
     int updatePlayCountById(Integer id);
+
+    //通过id浏览量加一
+    @Update("update t_clickinfo set look_count=look_count+1 where id = #{id}")
+    int updateLookCountById(Integer id);
 
     //通过id点赞减一
     @Update("update t_clickinfo set like_count=like_count-1 where tlike_count>0 and id =#{id}")
