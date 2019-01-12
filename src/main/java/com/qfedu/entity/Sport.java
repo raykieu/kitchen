@@ -7,6 +7,16 @@ public class Sport {
 
     private Sportimg iImgurl;
 
+    private String goushi;
+
+    public String getGoushi() {
+        return goushi;
+    }
+
+    public void setGoushi(String goushi) {
+        this.goushi = goushi;
+    }
+
     public Sportimg getiImgurl() {
         return iImgurl;
     }

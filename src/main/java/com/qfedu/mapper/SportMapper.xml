@@ -23,10 +23,14 @@
     where s_id = #{sId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.qfedu.entity.Sport">
+    <!-- Order表示什么时候执行selectKey里面的语句after表示插入之后执行 -->
+    <selectKey order="AFTER" keyProperty="sId" resultType="int">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into sport (s_id, s_info)
     values (#{sId,jdbcType=INTEGER}, #{sInfo,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.qfedu.entity.Sport">
+  <insert id="insertSelective" parameterType="com.qfedu.entity.Sport" useGeneratedKeys="true" keyProperty="sId"   >
     insert into sport
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sId != null">
@@ -45,7 +49,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Sport">
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.Sport" useGeneratedKeys="true" keyProperty="sId">
     update sport
     <set>
       <if test="sInfo != null">
@@ -59,14 +63,17 @@
     set s_info = #{sInfo,jdbcType=VARCHAR}
     where s_id = #{sId,jdbcType=INTEGER}
   </update>
-  <select id="findAllSports" resultMap="BaseResultMap">
+  <select id="findAllSports" parameterType="map" resultMap="BaseResultMap">
     SELECT s.*,sp.i_imgurl FROM sport s
     INNER JOIN sportimg sp
-    WHERE s.s_id = sp.s_id
+    on s.s_id = sp.s_id
     LIMIT #{index},#{limit}
   </select>
-
-  <select id="sportCount"  resultMap="BaseResultMap">
-	select count(*) from sport
+  <select id="findeBySportByid" parameterType="int" resultMap="BaseResultMap">
+    SELECT s.*,sp.i_imgurl FROM sport s
+    INNER JOIN sportimg sp
+    on s.s_id = sp.s_id
+    where s.s_id = #{sId}
   </select>
+
 </mapper>
