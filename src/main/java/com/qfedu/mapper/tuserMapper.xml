@@ -5,7 +5,7 @@
     <id column="uid" jdbcType="INTEGER" property="uid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="phonenumber" jdbcType="INTEGER" property="phonenumber" />
+    <result column="phonenumber" jdbcType="VARCHAR"  property="phonenumber" />
   </resultMap>
   <sql id="Base_Column_List">
     uid, username, password, phonenumber
@@ -24,7 +24,7 @@
     insert into t_user (uid, username, password, 
       phonenumber)
     values (#{uid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phonenumber,jdbcType=INTEGER})
+      #{phonenumber,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qfedu.entity.tuser">
     insert into t_user
@@ -79,4 +79,8 @@
       phonenumber = #{phonenumber,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  * from  t_user u where u.username=#{username}
+
+  </select>
 </mapper>

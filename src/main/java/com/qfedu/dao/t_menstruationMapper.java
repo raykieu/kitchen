@@ -25,5 +25,8 @@ public interface t_menstruationMapper {
     @Select("select count(*) from t_menstruation")
     @ResultType(int.class)
     int selectCount();
+//    @Select("SELECT * from t_menstruation where Mid=#{mid}")
+//    @ResultType(t_menstruation.class)
+    t_menstruation selectByMid(Integer mid);
 
 }

@@ -83,5 +83,10 @@
     select * from t_menstruation t order by t.`Mid` limit #{index},#{limit}
 
   </select>
+  <select id="selectByMid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  SELECT * from t_menstruation where Mid=#{mid}
+
+
+  </select>
 
 </mapper>

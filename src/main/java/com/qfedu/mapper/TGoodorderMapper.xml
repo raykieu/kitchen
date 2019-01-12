@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.TGoodorderMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.TGoodorder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ordernumber" jdbcType="VARCHAR" property="ordernumber" />
+    <result column="orderquantity" jdbcType="INTEGER" property="orderquantity" />
+    <result column="orderstatus" jdbcType="INTEGER" property="orderstatus" />
+    <result column="goodnumber" jdbcType="BIGINT" property="goodnumber" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ordernumber, orderquantity, orderstatus, goodnumber, uid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_goodorder
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_goodorder
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.TGoodorder">
+    insert into t_goodorder (id, ordernumber, orderquantity, 
+      orderstatus, goodnumber, uid
+      )
+    values (#{id,jdbcType=BIGINT}, #{ordernumber,jdbcType=VARCHAR}, #{orderquantity,jdbcType=INTEGER}, 
+      #{orderstatus,jdbcType=INTEGER}, #{goodnumber,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.TGoodorder">
+    insert into t_goodorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ordernumber != null">
+        ordernumber,
+      </if>
+      <if test="orderquantity != null">
+        orderquantity,
+      </if>
+      <if test="orderstatus != null">
+        orderstatus,
+      </if>
+      <if test="goodnumber != null">
+        goodnumber,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ordernumber != null">
+        #{ordernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderquantity != null">
+        #{orderquantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null">
+        #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="goodnumber != null">
+        #{goodnumber,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.TGoodorder">
+    update t_goodorder
+    <set>
+      <if test="ordernumber != null">
+        ordernumber = #{ordernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderquantity != null">
+        orderquantity = #{orderquantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null">
+        orderstatus = #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="goodnumber != null">
+        goodnumber = #{goodnumber,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.TGoodorder">
+    update t_goodorder
+    set ordernumber = #{ordernumber,jdbcType=VARCHAR},
+      orderquantity = #{orderquantity,jdbcType=INTEGER},
+      orderstatus = #{orderstatus,jdbcType=INTEGER},
+      goodnumber = #{goodnumber,jdbcType=BIGINT},
+      uid = #{uid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

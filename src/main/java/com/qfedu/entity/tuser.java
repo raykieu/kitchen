@@ -1,13 +1,24 @@
 package com.qfedu.entity;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
+@Api("成功吧")
 public class tuser {
     private Integer uid;
-
+    @ApiParam(name = "username",value = "帐号")
     private String username;
-
+    @ApiParam(name = "password",value = "密码")
     private String password;
+    @ApiParam(name = "phonenumber",value = "手机号")
+    private String phonenumber;
 
-    private Integer phonenumber;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
 
     public Integer getUid() {
         return uid;
@@ -33,11 +44,5 @@ public class tuser {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getPhonenumber() {
-        return phonenumber;
-    }
 
-    public void setPhonenumber(Integer phonenumber) {
-        this.phonenumber = phonenumber;
-    }
 }

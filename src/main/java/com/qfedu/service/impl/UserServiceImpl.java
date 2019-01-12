@@ -20,7 +20,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     public ResultVo selectByName(String name, String password) {
          tuser user=tuserdao.selectByName(name);
-         if (user!=null&&password.equals(user.getPassword())){
+         if (password.equals(user.getPassword())){
 
              return ResultVo.setOK(user);
          }else {
