@@ -7,6 +7,16 @@ public class Note {
 
     private Integer nNice;
 
+    private Integer uId;
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
+
     public Integer getnId() {
         return nId;
     }

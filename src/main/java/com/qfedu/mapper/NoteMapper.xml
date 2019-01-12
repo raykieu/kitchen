@@ -5,9 +5,10 @@
     <id column="n_id" jdbcType="INTEGER" property="nId" />
     <result column="n_info" jdbcType="VARCHAR" property="nInfo" />
     <result column="n_nice" jdbcType="INTEGER" property="nNice" />
+    <result column="uid" jdbcType="INTEGER" property="uId" />
   </resultMap>
   <sql id="Base_Column_List">
-    n_id, n_info, n_nice
+    n_id, n_info, n_nice, uid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -37,6 +38,9 @@
       <if test="nNice != null">
         n_nice,
       </if>
+      <if test="uId != null">
+        uid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="nId != null">
@@ -47,6 +51,9 @@
       </if>
       <if test="nNice != null">
         #{nNice,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -59,6 +66,9 @@
       <if test="nNice != null">
         n_nice = #{nNice,jdbcType=INTEGER},
       </if>
+      <if test="uId != null">
+        uid = #{uId,jdbcType=INTEGER},
+      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -68,4 +78,9 @@
       n_nice = #{nNice,jdbcType=INTEGER}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
+  <select id="findNoteByUid" parameterType="int" resultMap="BaseResultMap">
+    SELECT * FROM note WHERE uid = #{uId}
+  </select>
+
+
 </mapper>

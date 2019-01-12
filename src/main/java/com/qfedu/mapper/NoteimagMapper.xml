@@ -5,6 +5,14 @@
     <id column="i_id" jdbcType="INTEGER" property="iId" />
     <result column="n_id" jdbcType="INTEGER" property="nId" />
     <result column="i_imgurl" jdbcType="VARCHAR" property="iImgurl" />
+
+    <association property="user"
+                 resultMap="com.qfedu.dao.tuserMapper.BaseResultMap">
+    </association>
+
+    <association property="note"
+                 resultMap="com.qfedu.dao.NoteMapper.BaseResultMap">
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     i_id, n_id, i_imgurl
@@ -68,4 +76,12 @@
       i_imgurl = #{iImgurl,jdbcType=VARCHAR}
     where i_id = #{iId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAllNote" resultMap="BaseResultMap">
+    SELECT n.n_info,n.n_nice,ni.i_imgurl,tu.username FROM noteimag ni
+INNER JOIN note n
+ON ni.n_id = n.n_id
+INNER JOIN t_user tu
+ON n.uid = tu.uid LIMIT #{index},#{limit}
+  </select>
 </mapper>

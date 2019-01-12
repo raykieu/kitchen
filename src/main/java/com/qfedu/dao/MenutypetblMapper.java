@@ -32,7 +32,7 @@ public interface MenutypetblMapper {
     Menutypetbl findByMenuId(int mid);
 
     // 根据菜品名字查找
-    Menutypetbl findByMenuName(String mName);
+    List<Menutypetbl> findByMenuName(String mName);
 
     // 查询所有一级菜谱分类
     List<Menutypetbl> findAllOneMenu();
@@ -41,5 +41,5 @@ public interface MenutypetblMapper {
     List<Menutypetbl> findAllOneSport();
 
     // 根据菜品名字查找
-    Menutypetbl findByMenuSport(String mName);
+    List<Menutypetbl> findByMenuSport(String mName);
 }
