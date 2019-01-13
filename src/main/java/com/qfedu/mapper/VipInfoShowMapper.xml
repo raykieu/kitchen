@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.VipInfoShowMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.entity.VipInfoShow">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="typeid" jdbcType="INTEGER" property="typeid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="titleinfo" jdbcType="VARCHAR" property="titleinfo" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="imgname" jdbcType="VARCHAR" property="imgname" />
+    <result column="imginfo" jdbcType="VARCHAR" property="imginfo" />
+    <result column="videourl" jdbcType="VARCHAR" property="videourl" />
+    <result column="videoname" jdbcType="VARCHAR" property="videoname" />
+    <result column="videoinfo" jdbcType="VARCHAR" property="videoinfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, typeid, uid, title, titleinfo, imgurl, imgname, imginfo, videourl, videoname, 
+    videoinfo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_vipinfoshow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_vipinfoshow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.entity.VipInfoShow">
+    insert into t_vipinfoshow (id, typeid, uid, 
+      title, titleinfo, imgurl, 
+      imgname, imginfo, videourl, 
+      videoname, videoinfo)
+    values (#{id,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{titleinfo,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}, 
+      #{imgname,jdbcType=VARCHAR}, #{imginfo,jdbcType=VARCHAR}, #{videourl,jdbcType=VARCHAR}, 
+      #{videoname,jdbcType=VARCHAR}, #{videoinfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.entity.VipInfoShow">
+    insert into t_vipinfoshow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="typeid != null">
+        typeid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="titleinfo != null">
+        titleinfo,
+      </if>
+      <if test="imgurl != null">
+        imgurl,
+      </if>
+      <if test="imgname != null">
+        imgname,
+      </if>
+      <if test="imginfo != null">
+        imginfo,
+      </if>
+      <if test="videourl != null">
+        videourl,
+      </if>
+      <if test="videoname != null">
+        videoname,
+      </if>
+      <if test="videoinfo != null">
+        videoinfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleinfo != null">
+        #{titleinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgname != null">
+        #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imginfo != null">
+        #{imginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="videourl != null">
+        #{videourl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoname != null">
+        #{videoname,jdbcType=VARCHAR},
+      </if>
+      <if test="videoinfo != null">
+        #{videoinfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.entity.VipInfoShow">
+    update t_vipinfoshow
+    <set>
+      <if test="typeid != null">
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleinfo != null">
+        titleinfo = #{titleinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgname != null">
+        imgname = #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imginfo != null">
+        imginfo = #{imginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="videourl != null">
+        videourl = #{videourl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoname != null">
+        videoname = #{videoname,jdbcType=VARCHAR},
+      </if>
+      <if test="videoinfo != null">
+        videoinfo = #{videoinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.entity.VipInfoShow">
+    update t_vipinfoshow
+    set typeid = #{typeid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      titleinfo = #{titleinfo,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      imgname = #{imgname,jdbcType=VARCHAR},
+      imginfo = #{imginfo,jdbcType=VARCHAR},
+      videourl = #{videourl,jdbcType=VARCHAR},
+      videoname = #{videoname,jdbcType=VARCHAR},
+      videoinfo = #{videoinfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
