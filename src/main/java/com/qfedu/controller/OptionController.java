@@ -22,7 +22,7 @@ public class OptionController {
      *
      * @return 返回所有的体质测试信息
      */
-    @ApiOperation("查询所有选择信息")
+    @ApiOperation("这个街口多写 没有用")
     @GetMapping("findAllOption.do")
     ResultVo findAllOption(){ return opService.findAllOption(); }
 
