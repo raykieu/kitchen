@@ -19,7 +19,7 @@ public class NoteController {
     @Autowired
     private NoteService noService;
 
-    @ApiOperation("点赞的添加操作")
+    @ApiOperation(notes = "点赞的添加操作",tags = {"点赞详情"},value = "传入qUid,原来的点赞数nNice")
     @GetMapping("addNote.do")
-    ResultVo addNice(@ApiParam("传入qUid,原来的点赞数nNice") Note no) { return noService.add(no); }
+    ResultVo addNice(Note no) { return noService.add(no); }
 }

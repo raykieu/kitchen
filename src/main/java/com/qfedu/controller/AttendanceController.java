@@ -25,13 +25,13 @@ public class AttendanceController {
      * @param qUid 关联的用户ID
      * @return  签到的信息
      */
-    @ApiOperation("响应登陆用户对应所有的签到数据")
+    @ApiOperation(notes = "响应登陆用户对应所有的签到数据",tags = {"签到详情"},value = "传入qUid")
     @GetMapping("findAllAttendacne.do")
-    ResultVo findAllAttendacne(@ApiParam("传入qUid") Integer qUid) {
+    ResultVo findAllAttendacne(Integer qUid) {
       return attService.findAllAttendance(qUid);
     }
 
-    @ApiOperation("响应登陆用户的见签到情况进行签到数据")
+    @ApiOperation(notes = "响应登陆用户的签到情况进行签到数据",tags = {"签到详情"},value = "传入qUid")
     @GetMapping("addAttendacne.do")
-    ResultVo addAttendacne(@ApiParam("传入qUid") Attendance att) { return  attService.addAllAttendance(att); }
+    ResultVo addAttendacne(Attendance att) { return  attService.addAllAttendance(att); }
 }

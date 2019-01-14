@@ -25,23 +25,23 @@ public class SportController {
     @Autowired(required = true)
     private SportService sportSerivce;
 
-    @ApiOperation("响应运动方式的四条数据数据")
+    @ApiOperation(notes = "响应运动方式的四条数据数据",tags = {"查询四条运动方式"},value = "这个不用传参")
     @RequestMapping("find4Sports.do")
     @ResponseBody
-    PageBeanVo find4Sports(@ApiParam("这个不用传参") Integer page, Integer limit){
+    PageBeanVo find4Sports(Integer page, Integer limit){
       return sportSerivce.findAllSport(1,4);
     }
 
-    @ApiOperation("响应运动方式数据数据")
+    @ApiOperation(notes = "响应运动方式数据数据",tags = {"查询所有运动方式"},value = "传入页码page,个数limit")
     @GetMapping("findAllSports.do")
-    PageBeanVo findAllSports(@ApiParam("传入页码page,个数limit") Integer page, Integer limit){
+    PageBeanVo findAllSports(Integer page, Integer limit){
         return sportSerivce.findAllSport(page,limit);
     }
 
-    @ApiOperation("运动方式的文件上传，图片，图片信息")
+    @ApiOperation(notes = "运动方式的文件上传，图片，图片信息",tags = {"上传运动方式图片"},value = "传入图片，传入图片信息sInfo")
     @RequestMapping("upload.do")
     @ResponseBody
-    ResultVo upLoad(@ApiParam("传入图片，传入图片信息sInfo") @RequestParam MultipartFile upfile,String sInfo){
+    ResultVo upLoad(@RequestParam MultipartFile upfile,String sInfo){
         System.out.println(sInfo);
         String fileName = upfile.getOriginalFilename();
         // 全球唯一id
@@ -73,10 +73,10 @@ public class SportController {
         return ResultVo.setOK(1);
     }
 
-    @ApiOperation("运动方式表删除操作")
+    @ApiOperation(notes = "运动方式表删除操作",tags = {"传入运动表sId"},value = "传入运动表sId")
     @RequestMapping("deleteSport1.do")
     @ResponseBody
-    ResultVo deleteSport(@ApiParam("传入运动表sId") Integer sId){
+    ResultVo deleteSport(Integer sId){
       return sportSerivce.delete(sId);
     }
 
